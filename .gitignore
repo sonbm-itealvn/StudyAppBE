@@ -1,0 +1,96 @@
+# ======================================
+# Node & TypeScript Backend .gitignore
+# ======================================
+
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+out/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE and editor folders
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Test artifacts
+jest-html-reporters-*.html
+test-results.xml
+
+# Compiled JS maps
+*.js.map
+
+# Dependency lock files (if using only one manager, keep one)
+# Uncomment the ones you DON’T use
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# PM2 / runtime
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Docker
+docker-compose.override.yml
+.docker/
+*.tar
+
+# Prisma / ORM
+prisma/dev.db
+prisma/*.sqlite
+prisma/migrations/.DS_Store
+
+# Cache
+.cache/
+.eslintcache
+.turbo/
+.next/
+.nuxt/
+
+# Optional: Ignore generated API docs
+docs/
+swagger.json
+swagger.yaml
+openapi.json
+openapi.yaml
+
+# Optional: Ignore uploads / local data
+uploads/
+data/
+storage/
