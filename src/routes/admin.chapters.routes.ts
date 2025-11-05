@@ -5,12 +5,13 @@ import { asyncHandler } from '../utils/asyncHandler';
 import { AdminChaptersController } from '../controllers/admin.chapters.controller';
 
 const router = Router();
-router.use(requireAuth, requireAdmin);
 
-// List chapters by subject
+// Any authenticated role can list chapters
+router.use(requireAuth);
 router.get('/by-subject/:subjectId', asyncHandler(AdminChaptersController.listBySubject));
 
-// CRUD
+// Admin-only mutations
+router.use(requireAdmin);
 router.post('/', asyncHandler(AdminChaptersController.create));
 router.put('/:id', asyncHandler(AdminChaptersController.update));
 router.delete('/:id', asyncHandler(AdminChaptersController.remove));

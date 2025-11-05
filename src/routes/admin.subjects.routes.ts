@@ -5,12 +5,13 @@ import { asyncHandler } from '../utils/asyncHandler';
 import { AdminSubjectsController } from '../controllers/admin.subjects.controller';
 
 const router = Router();
-router.use(requireAuth, requireAdmin);
 
-// Xem danh sách môn theo class (admin)
+// Any authenticated role can list subjects
+router.use(requireAuth);
 router.get('/by-class/:classId', asyncHandler(AdminSubjectsController.listByClass));
 
-// CRUD
+// Admin-only mutations
+router.use(requireAdmin);
 router.post('/', asyncHandler(AdminSubjectsController.create));
 router.put('/:id', asyncHandler(AdminSubjectsController.update));
 router.delete('/:id', asyncHandler(AdminSubjectsController.remove));

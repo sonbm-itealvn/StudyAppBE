@@ -1,6 +1,6 @@
 // src/app.ts
 import express from 'express';
-import cors from 'cors';
+import cors, { CorsOptions } from 'cors';
 import morgan from 'morgan';
 import authRoutes from './routes/auth.routes';
 import classRoutes from './routes/classes.routes';
@@ -15,10 +15,25 @@ import adminSubjectsRoutes from './routes/admin.subjects.routes';
 import adminLessonsRoutes from './routes/admin.lessons.routes';
 
 import { notFound, errorHandler } from './middlewares/error.middleware';
+import { env } from './configs/env';
 
 const app = express();
 
-app.use(cors());
+const corsOrigin =
+  env.CORS_ORIGINS === '*'
+    ? true
+    : env.CORS_ORIGINS.split(',')
+        .map((origin) => origin.trim())
+        .filter(Boolean);
+
+const corsOptions: CorsOptions = {
+  origin: corsOrigin,
+  credentials: env.CORS_ALLOW_CREDENTIALS,
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['Authorization']
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan('dev'));
 
